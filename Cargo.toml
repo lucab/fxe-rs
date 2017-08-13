@@ -1,0 +1,11 @@
+[package]
+name = "fxe"
+version = "0.1.0"
+authors = ["Luca Bruno <lucab@debian.org>"]
+
+[dependencies]
+error-chain = { version = "0.10", default-features = false }
+nix = { git = "https://github.com/lucab/nix", rev = "ups/fexecve" }
+
+[profile.release]
+lto = true
