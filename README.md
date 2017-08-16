@@ -31,7 +31,7 @@ To try it, simply do a `make run`:
 ```
 $ make run
 
-docker run --privileged --pid=host -v /proc/1/ns/:/ns quay.io/lucab/fxe:latest
+docker run --privileged --pid=host quay.io/lucab/fxe:latest /fxe /proc/1/ns/mnt
 
 filename:       /lib/modules/4.11.0-1-amd64/kernel/lib/crc16.ko
 description:    CRC16 calculations
@@ -41,7 +41,7 @@ intree:         Y
 vermagic:       4.11.0-1-amd64 SMP mod_unload modversions 
 ```
 
-This will use `/proc/1/ns/mnt` as the host mount-namespace target, which should be bind-mounted inside the container.
+This will use `/proc/1/ns/mnt` as the host mount-namespace target. Other targets can be used, as long as they are bind-mounted inside the container.
 
 The `--privileged` flag is a shortcut to add `CAP_SYS_ADMIN` and `CAP_SYS_CHROOT` (required by `setns(2)`) and to prevent the default SECCOMP filter to block it. Both can be allowed with finer granularity settings (this is left as an exercise).
 
